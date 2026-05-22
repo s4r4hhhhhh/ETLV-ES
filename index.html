@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ETLV Anglais ST2S — Guide Complet STSS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Nunito:wght@300;400;600;700;800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --rose:       #fde8f0;
+      --rose-med:   #f5c8dc;
+      --rose-vif:   #e899c0;
+      --violet-cl:  #d4a0cc;
+      --violet:     #b06aaa;
+      --violet-f:   #7c3a88;
+      --bordeaux:   #8b2252;
+      --bord-f:     #5a0f30;
+      --bord-vif:   #a83060;
+      --or:         #c9a06e;
+      --blanc:      #fff6fb;
+      --texte:      #2e0e1c;
+      --texte-d:    #5c2a3e;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body {
+      font-family:'Nunito',sans-serif;
+      background: #fde8f0;
+      background-image:
+        radial-gradient(ellipse at 15% 20%, rgba(176,106,170,0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 10%, rgba(139,34,82,0.28) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 60%, rgba(212,160,204,0.3) 0%, transparent 60%),
+        radial-gradient(ellipse at 90% 85%, rgba(124,58,136,0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 10% 90%, rgba(168,48,96,0.2) 0%, transparent 45%);
+      background-attachment:fixed;
+      color:var(--texte);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    /* grain */
+    body::after{
+      content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.035'/%3E%3C/svg%3E");
+      opacity:.7;
+    }
+
+    /* ─── HEADER ─── */
+    header{
+      position:relative;z-index:10;text-align:center;
+      padding:72px 24px 56px;
+      background:linear-gradient(160deg, rgba(90,15,48,0.92) 0%, rgba(124,58,136,0.82) 55%, rgba(176,106,170,0.5) 100%);
+    }
+    header::before{
+      content:'';position:absolute;inset:0;
+      background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,220,240,0.12)'/%3E%3C/svg%3E");
+    }
+    .header-icon{font-size:3rem;margin-bottom:12px;animation:heartbeat 2.4s ease-in-out infinite}
+    @keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.15)}28%{transform:scale(1)}}
+    header h1{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem,5.5vw,3.8rem);font-weight:900;
+      color:#fff6fb;text-shadow:0 3px 24px rgba(90,15,48,0.5);
+      line-height:1.18;letter-spacing:.03em;
+    }
+    header h1 em{
+      font-style:normal;
+      background:linear-gradient(90deg,#f9d0e8,#e898c0,#c87ab8);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    header .tagline{
+      margin-top:14px;
+      font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:700;
+      color:rgba(255,215,235,.88);letter-spacing:.18em;text-transform:uppercase;
+    }
+    header .pills{
+      display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px;
+    }
+    header .pill{
+      background:rgba(255,246,251,.15);border:1px solid rgba(255,215,235,.35);
+      color:rgba(255,230,245,.9);padding:5px 14px;border-radius:20px;
+      font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;
+      letter-spacing:.1em;text-transform:uppercase;
+    }
+
+    /* ─── NAV ─── */
+    nav{
+      position:sticky;top:0;z-index:100;
+      background:linear-gradient(90deg,rgba(90,15,48,.96),rgba(124,58,136,.96));
+      backdrop-filter:blur(14px);
+      border-bottom:2px solid rgba(201,160,110,.35);
+      display:flex;flex-wrap:wrap;justify-content:center;gap:3px;padding:9px 12px;
+    }
+    nav a{
+      color:rgba(255,220,240,.85);text-decoration:none;
+      font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;
+      letter-spacing:.1em;text-transform:uppercase;
+      padding:5px 11px;border-radius:18px;
+      border:1px solid rgba(201,160,110,.25);
+      transition:all .22s;
+    }
+    nav a:hover{
+      background:rgba(201,160,110,.22);color:#fde8f0;
+      border-color:rgba(201,160,110,.6);transform:translateY(-1px);
+    }
+
+    /* ─── MAIN ─── */
+    main{position:relative;z-index:5;max-width:1120px;margin:0 auto;padding:0 16px 90px}
+
+    section{
+      margin-top:64px;
+      background:linear-gradient(145deg,rgba(253,232,240,.9) 0%,rgba(247,210,230,.86) 100%);
+      backdrop-filter:blur(12px);
+      border-radius:26px;padding:44px 38px;
+      border:1.5px solid rgba(176,106,170,.35);
+      box-shadow:0 10px 50px rgba(90,15,48,.15),inset 0 1px 0 rgba(255,255,255,.55);
+    }
+    @media(max-width:640px){section{padding:26px 16px}}
+
+    section h2{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.55rem,3.5vw,2.15rem);font-weight:800;
+      color:var(--bord-f);
+      border-bottom:3px solid transparent;
+      border-image:linear-gradient(90deg,var(--bordeaux),var(--violet-f),var(--violet)) 1;
+      padding-bottom:13px;margin-bottom:30px;
+      display:flex;align-items:center;gap:12px;
+    }
+    section h3{
+      font-family:'Montserrat',sans-serif;font-size:.98rem;font-weight:800;
+      color:var(--bord-vif);
+      margin:30px 0 13px;padding-left:13px;
+      border-left:4px solid var(--violet);
+      text-transform:uppercase;letter-spacing:.08em;
+    }
+
+    /* ─── BADGES ─── */
+    .badge{
+      display:inline-block;font-family:'Montserrat',sans-serif;
+      font-size:.6rem;font-weight:800;padding:3px 9px;border-radius:20px;
+      text-transform:uppercase;letter-spacing:.1em;margin-left:6px;vertical-align:middle;
+    }
+    .b1{background:linear-gradient(90deg,#b06aaa,#7c3a88);color:#fff}
+    .bT{background:linear-gradient(90deg,#8b2252,#5a0f30);color:#fde8f0}
+    .b12{background:linear-gradient(90deg,#7c3a88,#8b2252);color:#fff}
+
+    /* ─── CARDS NOTIONS ─── */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:18px;margin-top:6px}
+    @media(max-width:640px){.grid{grid-template-columns:1fr}}
+
+    .card{
+      background:linear-gradient(150deg,rgba(255,248,252,.96),rgba(250,228,242,.92));
+      border:1.5px solid rgba(176,106,170,.28);border-radius:18px;padding:20px;
+      box-shadow:0 4px 20px rgba(90,15,48,.09);
+      transition:transform .24s,box-shadow .24s;
+      position:relative;overflow:hidden;
+    }
+    .card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:4px;
+      background:linear-gradient(90deg,var(--bordeaux),var(--violet-f),var(--violet));
+    }
+    .card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(90,15,48,.18)}
+    .card .lbl{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;
+      letter-spacing:.12em;text-transform:uppercase;color:var(--violet);margin-bottom:4px}
+    .card .ten{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--bord-f)}
+    .card .tes{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:var(--violet-f);margin-top:1px}
+    .card .den{font-size:.87rem;color:var(--texte-d);margin-top:10px;line-height:1.65;
+      border-top:1px dashed rgba(176,106,170,.32);padding-top:8px}
+    .card .des{font-size:.83rem;color:#7b3060;margin-top:6px;font-style:italic;line-height:1.55}
+    .card .tags{margin-top:10px}
+
+    /* ─── TABLEAUX ─── */
+    .tbl{width:100%;border-collapse:separate;border-spacing:0;border-radius:16px;overflow:hidden;
+      box-shadow:0 4px 22px rgba(90,15,48,.11);margin-top:8px}
+    .tbl thead tr{background:linear-gradient(90deg,var(--bord-f),var(--violet-f))}
+    .tbl th{padding:12px 15px;font-family:'Montserrat',sans-serif;font-size:.72rem;
+      font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#fde8f0;text-align:left}
+    .tbl td{padding:10px 15px;font-size:.87rem;line-height:1.55;
+      border-bottom:1px solid rgba(176,106,170,.18)}
+    .tbl tr:last-child td{border-bottom:none}
+    .tbl tbody tr:nth-child(even){background:rgba(176,106,170,.1)}
+    .tbl tbody tr:nth-child(odd){background:rgba(255,255,255,.55)}
+    .tbl tbody tr:hover{background:rgba(176,106,170,.2)}
+    .tbl td:first-child{font-weight:700;color:var(--bord-f)}
+    .tbl td:nth-child(2){font-style:italic;color:var(--violet-f)}
+
+    /* ─── PROGRAMME ONGLETS ─── */
+    .tabs{display:flex;gap:12px;margin-bottom:26px;flex-wrap:wrap}
+    .tab{padding:10px 26px;border-radius:30px;border:none;cursor:pointer;
+      font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;
+      letter-spacing:.07em;text-transform:uppercase;transition:all .24s}
+    .tab.on1{background:linear-gradient(90deg,#b06aaa,#7c3a88);color:#fff;box-shadow:0 4px 16px rgba(124,58,136,.4)}
+    .tab.onT{background:linear-gradient(90deg,#8b2252,#5a0f30);color:#fde8f0;box-shadow:0 4px 16px rgba(90,15,48,.4)}
+    .tab.off{background:rgba(255,255,255,.5);color:var(--texte-d);border:1.5px solid rgba(176,106,170,.3)}
+    .panel{display:none}
+    .panel.show{display:block;animation:up .4s ease}
+
+    .proglist{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .proglist li{
+      background:rgba(255,255,255,.58);border-radius:14px;padding:15px 18px;
+      border-left:5px solid var(--violet);font-size:.9rem;line-height:1.65;
+      box-shadow:0 2px 12px rgba(90,15,48,.07);
+    }
+    .proglist li.t{border-left-color:var(--bordeaux)}
+    .proglist li strong{color:var(--bord-f)}
+    .proglist li em{color:var(--violet-f)}
+
+    /* ─── MNEMO ─── */
+    .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;margin-top:8px}
+    @media(max-width:640px){.mgrid{grid-template-columns:1fr}}
+    .mc{
+      background:linear-gradient(135deg,rgba(90,15,48,.08),rgba(124,58,136,.12));
+      border:1.5px solid rgba(176,106,170,.32);border-radius:15px;padding:18px;
+    }
+    .mc .ico{font-size:1.9rem;margin-bottom:8px}
+    .mc .mt{font-family:'Playfair Display',serif;font-size:1.02rem;font-weight:700;color:var(--bord-f)}
+    .mc .mx{font-size:.86rem;color:var(--texte-d);margin-top:8px;line-height:1.65;
+      background:rgba(255,255,255,.55);border-radius:9px;padding:9px 11px}
+    .mc .mx strong{color:var(--bord-vif)}
+
+    /* ─── PHRASE ETLV ─── */
+    .phrase{
+      background:linear-gradient(135deg,rgba(90,15,48,.1),rgba(124,58,136,.13));
+      border-radius:15px;padding:18px 22px;margin-top:14px;
+      border:1.5px solid rgba(176,106,170,.28);
+    }
+    .phrase .ph-lbl{font-family:'Montserrat',sans-serif;font-size:.64rem;font-weight:800;
+      letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:6px}
+    .phrase p{font-family:'Playfair Display',serif;font-size:1.02rem;
+      font-style:italic;line-height:1.72;color:var(--bord-f)}
+
+    /* ─── PEEL ─── */
+    .peel{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:10px}
+    .peel-box{border-radius:13px;padding:16px;border:1.5px solid rgba(176,106,170,.28)}
+    .peel-letter{font-family:'Montserrat',sans-serif;font-size:2.2rem;font-weight:900;color:var(--bord-f)}
+    .peel-title{font-weight:800;color:var(--bord-f);margin-top:2px}
+    .peel-desc{font-size:.84rem;color:var(--texte-d);margin-top:5px;line-height:1.6}
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* ─── FOOTER ─── */
+    footer{text-align:center;padding:42px 20px;position:relative;z-index:5;
+      font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.1em;
+      color:rgba(90,15,48,.5)}
+    footer span{display:block;margin-top:5px;color:rgba(90,15,48,.4)}
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header>
+  <div class="header-icon">🩺</div>
+  <h1>ETLV Anglais — <em>Bac ST2S</em><br/>Guide Complet STSS</h1>
+  <p class="tagline">Sciences et Technologies de la Santé et du Social</p>
+  <div class="pills">
+    <span class="pill">Santé publique</span>
+    <span class="pill">Protection sociale</span>
+    <span class="pill">Travail social</span>
+    <span class="pill">EN / ES</span>
+    <span class="pill">1ère &amp; Terminale</span>
+    <span class="pill">Mnémotechniques</span>
+  </div>
+</header>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <a href="#notions">Notions</a>
+  <a href="#vocab">Vocabulaire</a>
+  <a href="#definitions">Définitions EN/ES</a>
+  <a href="#programme">Programme</a>
+  <a href="#mnemo">Mnémotechniques</a>
+  <a href="#pratique">Pratique ETLV</a>
+</nav>
+
+<main>
+
+<!-- ══════════ 1. NOTIONS CLÉS STSS ══════════ -->
+<section id="notions" class="reveal">
+  <h2>📚 Notions Clés STSS — Key Concepts</h2>
+  <p style="font-size:.9rem;color:var(--texte-d);margin-bottom:22px;">Toutes les notions du programme officiel ST2S, définies en anglais <strong>et</strong> en espagnol.</p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Health / Well-being</div>
+      <div class="tes">Salud / Bienestar</div>
+      <div class="den"><strong>EN:</strong> According to the WHO (1948), health is "a state of complete physical, mental and social well-being and not merely the absence of disease or infirmity."</div>
+      <div class="des"><strong>ES:</strong> Según la OMS, la salud es "un estado de completo bienestar físico, mental y social, y no solamente la ausencia de afecciones o enfermedades."</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Public Health</div>
+      <div class="tes">Salud Pública</div>
+      <div class="den"><strong>EN:</strong> The science and art of preventing disease, prolonging life, and promoting health through organised efforts of society and government.</div>
+      <div class="des"><strong>ES:</strong> La ciencia y el arte de prevenir enfermedades, prolongar la vida y promover la salud mediante los esfuerzos organizados de la sociedad y el gobierno.</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Social Protection</div>
+      <div class="tes">Protección Social</div>
+      <div class="den"><strong>EN:</strong> A set of policies and programmes designed to reduce poverty and vulnerability by promoting efficient labour markets, diminishing people's exposure to risks.</div>
+      <div class="des"><strong>ES:</strong> Conjunto de políticas y programas diseñados para reducir la pobreza y la vulnerabilidad, promoviendo mercados laborales eficientes y reduciendo la exposición al riesgo.</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Social Cohesion</div>
+      <div class="tes">Cohesión Social</div>
+      <div class="den"><strong>EN:</strong> The willingness of members of a society to cooperate in order to survive and prosper; the glue that holds society together through shared values and mutual support.</div>
+      <div class="des"><strong>ES:</strong> La voluntad de los miembros de una sociedad de cooperar para sobrevivir y prosperar; el vínculo que mantiene unida a la sociedad mediante valores compartidos y apoyo mutuo.</div>
+      <div class="tags"><span class="badge b1">1ère</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Health Inequalities</div>
+      <div class="tes">Desigualdades en Salud</div>
+      <div class="den"><strong>EN:</strong> Avoidable, unjust differences in health status between groups of people — linked to social determinants such as income, education, housing, and ethnicity.</div>
+      <div class="des"><strong>ES:</strong> Diferencias injustas y evitables en el estado de salud entre grupos de personas, vinculadas a determinantes sociales como el ingreso, la educación, la vivienda y la etnia.</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Social Work</div>
+      <div class="tes">Trabajo Social</div>
+      <div class="den"><strong>EN:</strong> A practice-based profession that promotes social change, development, cohesion, and the empowerment of people and communities (IFSW definition).</div>
+      <div class="des"><strong>ES:</strong> Profesión basada en la práctica que promueve el cambio social, el desarrollo, la cohesión y el empoderamiento de personas y comunidades (definición FITS).</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Healthcare System</div>
+      <div class="tes">Sistema Sanitario</div>
+      <div class="den"><strong>EN:</strong> The organisation of people, institutions, and resources that deliver healthcare services to meet the health needs of a target population.</div>
+      <div class="des"><strong>ES:</strong> La organización de personas, instituciones y recursos que prestan servicios de atención sanitaria para satisfacer las necesidades de salud de una población.</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Prevention</div>
+      <div class="tes">Prevención</div>
+      <div class="den"><strong>EN:</strong> Measures taken to reduce the risk, onset, severity or recurrence of disease. Three levels: primary (before disease), secondary (early detection), tertiary (limiting complications).</div>
+      <div class="des"><strong>ES:</strong> Medidas para reducir el riesgo, inicio, gravedad o recurrencia de enfermedades. Tres niveles: primaria, secundaria (detección precoz) y terciaria (limitar complicaciones).</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Social Determinants of Health</div>
+      <div class="tes">Determinantes Sociales de la Salud</div>
+      <div class="den"><strong>EN:</strong> Conditions in which people are born, grow, live, work and age that shape health outcomes — including education, poverty, housing, employment and social support.</div>
+      <div class="des"><strong>ES:</strong> Condiciones en las que las personas nacen, crecen, viven, trabajan y envejecen, que influyen en los resultados de salud: educación, pobreza, vivienda, empleo y apoyo social.</div>
+      <div class="tags"><span class="badge bT">Terminale</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Disability / Inclusion</div>
+      <div class="tes">Discapacidad / Inclusión</div>
+      <div class="den"><strong>EN:</strong> Disability refers to impairments, activity limitations, and participation restrictions. Inclusion is the process of improving the terms for individuals to take part in society.</div>
+      <div class="des"><strong>ES:</strong> La discapacidad se refiere a deficiencias, limitaciones de actividad y restricciones de participación. La inclusión es el proceso de mejorar las condiciones para que los individuos participen en la sociedad.</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Epidemiology</div>
+      <div class="tes">Epidemiología</div>
+      <div class="den"><strong>EN:</strong> The study of how diseases affect the health and illness of populations — analysing distribution, patterns, and determinants to guide public health decisions.</div>
+      <div class="des"><strong>ES:</strong> El estudio de cómo las enfermedades afectan la salud de las poblaciones, analizando su distribución, patrones y determinantes para orientar las decisiones de salud pública.</div>
+      <div class="tags"><span class="badge bT">Terminale</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Mental Health</div>
+      <div class="tes">Salud Mental</div>
+      <div class="den"><strong>EN:</strong> A state of well-being in which a person realises their own abilities, can cope with normal stresses of life, and can contribute to their community (WHO).</div>
+      <div class="des"><strong>ES:</strong> Un estado de bienestar en el que una persona reconoce sus propias capacidades, puede afrontar las tensiones normales de la vida y puede contribuir a su comunidad (OMS).</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Health Education / Promotion</div>
+      <div class="tes">Educación / Promoción de la Salud</div>
+      <div class="den"><strong>EN:</strong> The process of enabling people to increase control over, and to improve, their health through information, awareness, and empowerment campaigns.</div>
+      <div class="des"><strong>ES:</strong> El proceso de permitir que las personas aumenten el control sobre su salud y la mejoren, mediante información, concienciación y campañas de empoderamiento.</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Poverty / Precariousness</div>
+      <div class="tes">Pobreza / Precariedad</div>
+      <div class="den"><strong>EN:</strong> Poverty is living below a minimum income threshold. Precariousness describes instability and insecurity in housing, employment, and access to services.</div>
+      <div class="des"><strong>ES:</strong> La pobreza es vivir por debajo de un umbral mínimo de ingresos. La precariedad describe inestabilidad e inseguridad en la vivienda, el empleo y el acceso a los servicios.</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Medico-Social Action</div>
+      <div class="tes">Acción Médico-Social</div>
+      <div class="den"><strong>EN:</strong> Coordinated interventions by health and social professionals to support vulnerable individuals — combining medical care with social support (housing, employment, family).</div>
+      <div class="des"><strong>ES:</strong> Intervenciones coordinadas de profesionales sanitarios y sociales para apoyar a personas vulnerables, combinando atención médica con apoyo social.</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">English → Español</div>
+      <div class="ten">Bioethics</div>
+      <div class="tes">Bioética</div>
+      <div class="den"><strong>EN:</strong> The study of ethical issues emerging from advances in biology, medicine and technology — covering consent, end-of-life care, genetic research, and organ donation.</div>
+      <div class="des"><strong>ES:</strong> El estudio de cuestiones éticas derivadas de los avances en biología, medicina y tecnología: consentimiento, cuidados al final de la vida, investigación genética y donación de órganos.</div>
+      <div class="tags"><span class="badge bT">Terminale</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ 2. VOCABULAIRE ══════════ -->
+<section id="vocab" class="reveal">
+  <h2>🔤 Vocabulaire STSS par Thème</h2>
+
+  <h3>Health Professions / Profesiones Sanitarias</h3>
+  <table class="tbl">
+    <thead><tr><th>English</th><th>Español</th><th>Français</th><th>Niveau</th></tr></thead>
+    <tbody>
+      <tr><td>Nurse</td><td>Enfermero/a</td><td>Infirmier/ère</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Social worker</td><td>Trabajador/a social</td><td>Assistant(e) social(e)</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>General practitioner (GP)</td><td>Médico de cabecera</td><td>Médecin généraliste</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Caregiver / Carer</td><td>Cuidador/a</td><td>Aide-soignant(e) / Aidant</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Midwife</td><td>Matrona / Comadrona</td><td>Sage-femme</td><td><span class="badge b1">1ère</span></td></tr>
+      <tr><td>Pharmacist</td><td>Farmacéutico/a</td><td>Pharmacien(ne)</td><td><span class="badge b1">1ère</span></td></tr>
+      <tr><td>Physiotherapist</td><td>Fisioterapeuta</td><td>Kinésithérapeute</td><td><span class="badge bT">Terminale</span></td></tr>
+      <tr><td>Occupational therapist</td><td>Terapeuta ocupacional</td><td>Ergothérapeute</td><td><span class="badge bT">Terminale</span></td></tr>
+      <tr><td>Psychiatrist</td><td>Psiquiatra</td><td>Psychiatre</td><td><span class="badge bT">Terminale</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Health &amp; Disease / Salud y Enfermedad</h3>
+  <table class="tbl">
+    <thead><tr><th>English</th><th>Español</th><th>Français</th><th>Niveau</th></tr></thead>
+    <tbody>
+      <tr><td>Chronic disease</td><td>Enfermedad crónica</td><td>Maladie chronique</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Infectious disease</td><td>Enfermedad infecciosa</td><td>Maladie infectieuse</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Vaccination / Immunisation</td><td>Vacunación / Inmunización</td><td>Vaccination</td><td><span class="badge b1">1ère</span></td></tr>
+      <tr><td>Obesity</td><td>Obesidad</td><td>Obésité</td><td><span class="badge b1">1ère</span></td></tr>
+      <tr><td>Epidemic / Pandemic</td><td>Epidemia / Pandemia</td><td>Épidémie / Pandémie</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Morbidity</td><td>Morbilidad</td><td>Morbidité</td><td><span class="badge bT">Terminale</span></td></tr>
+      <tr><td>Mortality rate</td><td>Tasa de mortalidad</td><td>Taux de mortalité</td><td><span class="badge bT">Terminale</span></td></tr>
+      <tr><td>Life expectancy</td><td>Esperanza de vida</td><td>Espérance de vie</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Contraception</td><td>Anticoncepción</td><td>Contraception</td><td><span class="badge b1">1ère</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Social Welfare &amp; Institutions / Institutions et Protection Sociale</h3>
+  <table class="tbl">
+    <thead><tr><th>English</th><th>Español</th><th>Français</th><th>Niveau</th></tr></thead>
+    <tbody>
+      <tr><td>NHS (National Health Service)</td><td>Servicio Nacional de Salud</td><td>Sécurité Sociale (UK)</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Welfare state</td><td>Estado de bienestar</td><td>État-providence</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Social security</td><td>Seguridad social</td><td>Sécurité sociale</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Health insurance</td><td>Seguro de salud</td><td>Assurance maladie</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Benefit / Allowance</td><td>Prestación / Subsidio</td><td>Allocation / Prestation</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>NGO (Non-Governmental Organisation)</td><td>ONG</td><td>ONG</td><td><span class="badge b1">1ère</span></td></tr>
+      <tr><td>Foster care</td><td>Acogimiento familiar</td><td>Famille d'accueil</td><td><span class="badge bT">Terminale</span></td></tr>
+      <tr><td>Homelessness</td><td>Sin hogar / Sinhogarismo</td><td>Sans-abrisme / SDF</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Food bank</td><td>Banco de alimentos</td><td>Banque alimentaire</td><td><span class="badge b1">1ère</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Migration &amp; Health / Migración y Salud</h3>
+  <table class="tbl">
+    <thead><tr><th>English</th><th>Español</th><th>Français</th><th>Niveau</th></tr></thead>
+    <tbody>
+      <tr><td>Refugee</td><td>Refugiado/a</td><td>Réfugié(e)</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Asylum seeker</td><td>Solicitante de asilo</td><td>Demandeur d'asile</td><td><span class="badge bT">Terminale</span></td></tr>
+      <tr><td>Access to healthcare</td><td>Acceso a la sanidad</td><td>Accès aux soins</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Language barrier</td><td>Barrera lingüística</td><td>Barrière linguistique</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+      <tr><td>Integration</td><td>Integración</td><td>Intégration</td><td><span class="badge b12">1ère &amp; T</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════ 3. DÉFINITIONS COMPLÈTES EN/ES ══════════ -->
+<section id="definitions" class="reveal">
+  <h2>🌐 Définitions Approfondies EN → ES</h2>
+  <p style="font-size:.9rem;color:var(--texte-d);margin-bottom:22px;">Définitions rédigées en anglais académique — utilisables directement en ETLV et en oral de bac.</p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="ten">WHO (World Health Organisation)</div>
+      <div class="tes">OMS (Organización Mundial de la Salud)</div>
+      <div class="den"><strong>EN:</strong> A specialised United Nations agency (est. 1948) responsible for international public health. Its 1948 constitution defines health as complete physical, mental, and social well-being.</div>
+      <div class="des"><strong>ES:</strong> Organismo especializado de la ONU (1948) responsable de la salud pública internacional. Su constitución de 1948 define la salud como bienestar físico, mental y social completo.</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ten">Bismarck vs Beveridge Models</div>
+      <div class="tes">Modelos Bismarck y Beveridge</div>
+      <div class="den"><strong>EN:</strong> Two healthcare funding systems. Bismarck (Germany, France): social insurance funded by payroll contributions. Beveridge (UK NHS): universal, tax-funded, free at point of use.</div>
+      <div class="des"><strong>ES:</strong> Dos modelos de financiación sanitaria. Bismarck (Alemania, Francia): seguro social financiado por cotizaciones salariales. Beveridge (NHS británico): universal, financiado con impuestos, gratuito en el punto de uso.</div>
+      <div class="tags"><span class="badge bT">Terminale</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ten">Informed Consent</div>
+      <div class="tes">Consentimiento Informado</div>
+      <div class="den"><strong>EN:</strong> The process by which a healthcare professional informs a patient about risks, benefits, and alternatives of a procedure, allowing the patient to make a voluntary, competent decision.</div>
+      <div class="des"><strong>ES:</strong> Proceso por el cual un profesional sanitario informa al paciente sobre los riesgos, beneficios y alternativas de un procedimiento, permitiéndole tomar una decisión voluntaria e informada.</div>
+      <div class="tags"><span class="badge bT">Terminale</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ten">Herd Immunity</div>
+      <div class="tes">Inmunidad de Grupo (de Rebaño)</div>
+      <div class="den"><strong>EN:</strong> Indirect protection from an infectious disease that occurs when a sufficient proportion of a population has become immune (through vaccination or infection), reducing the spread.</div>
+      <div class="des"><strong>ES:</strong> Protección indirecta frente a una enfermedad infecciosa cuando una proporción suficiente de la población es inmune (por vacunación o infección), reduciendo la propagación.</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ten">Palliative Care</div>
+      <div class="tes">Cuidados Paliativos</div>
+      <div class="den"><strong>EN:</strong> Specialised medical care focused on providing relief from the symptoms and stress of a serious illness, aiming to improve quality of life for both patient and family.</div>
+      <div class="des"><strong>ES:</strong> Atención médica especializada enfocada en aliviar los síntomas y el estrés de una enfermedad grave, con el objetivo de mejorar la calidad de vida del paciente y su familia.</div>
+      <div class="tags"><span class="badge bT">Terminale</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ten">Universal Health Coverage (UHC)</div>
+      <div class="tes">Cobertura Sanitaria Universal (CSU)</div>
+      <div class="den"><strong>EN:</strong> An SDG goal ensuring all people have access to needed health services without suffering financial hardship. It includes the full spectrum of services, from prevention to rehabilitation.</div>
+      <div class="des"><strong>ES:</strong> Objetivo de los ODS que garantiza que todas las personas accedan a los servicios de salud necesarios sin dificultades financieras. Abarca desde la prevención hasta la rehabilitación.</div>
+      <div class="tags"><span class="badge bT">Terminale</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ten">Empowerment</div>
+      <div class="tes">Empoderamiento</div>
+      <div class="den"><strong>EN:</strong> In social work, the process of increasing the capacity of individuals or groups to make choices and transform those choices into desired actions and outcomes.</div>
+      <div class="des"><strong>ES:</strong> En trabajo social, el proceso de aumentar la capacidad de individuos o grupos para tomar decisiones y transformarlas en acciones y resultados deseados.</div>
+      <div class="tags"><span class="badge b12">1ère &amp; T</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ten">Addictions &amp; Harm Reduction</div>
+      <div class="tes">Adicciones y Reducción del Daño</div>
+      <div class="den"><strong>EN:</strong> Harm reduction refers to policies that reduce negative consequences of drug use without requiring abstinence — e.g. needle exchange programmes, supervised injection sites.</div>
+      <div class="des"><strong>ES:</strong> La reducción del daño se refiere a políticas que reducen las consecuencias negativas del consumo de drogas sin exigir abstinencia, por ejemplo, programas de intercambio de agujas.</div>
+      <div class="tags"><span class="badge bT">Terminale</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ 4. PROGRAMME DIFFÉRENCIÉ ══════════ -->
+<section id="programme" class="reveal">
+  <h2>🎓 Programme STSS Différencié</h2>
+
+  <div class="tabs">
+    <button class="tab on1" id="btn1" onclick="go('1')">🟣 Première ST2S</button>
+    <button class="tab off" id="btnT" onclick="go('T')">🔴 Terminale ST2S</button>
+  </div>
+
+  <!-- ── PREMIÈRE ── -->
+  <div class="panel show" id="p1">
+    <h3>Modules &amp; Thèmes — Première ST2S</h3>
+    <ul class="proglist">
+      <li>
+        <strong>Module 1 — Santé, Bien-être et Cohésion Sociale</strong><br/>
+        <em>Health, Well-being and Social Cohesion</em><br/>
+        Comprendre les concepts de santé et bien-être (OMS 1948). Mesurer les inégalités de santé. Étudier les indicateurs : espérance de vie, mortalité infantile, prévalence des maladies chroniques.<br/>
+        🇬🇧 Key vocabulary: well-being, life expectancy, chronic illness, social inequalities, health indicators, gap, survey, disability.
+      </li>
+      <li>
+        <strong>Module 2 — Protection Sociale</strong><br/>
+        <em>Social Protection &amp; Welfare</em><br/>
+        Les systèmes d'assurance maladie (Bismarck vs Beveridge). La Sécurité sociale française. Les risques couverts : maladie, maternité, invalidité, vieillesse.<br/>
+        🇬🇧 Key vocabulary: social security, health insurance, benefit, coverage, NHS, contribution, entitlement, solidarity.
+      </li>
+      <li>
+        <strong>Module 3 — Modes d'Intervention en Santé et Action Sociale</strong><br/>
+        <em>Interventions in Health and Social Action</em><br/>
+        Les acteurs de la santé (professionnels, institutions, associations). Le travail social. Les modes de prise en charge. La prévention primaire, secondaire, tertiaire.<br/>
+        🇬🇧 Key vocabulary: social worker, carer, NGO, prevention, outreach, empowerment, stakeholder, community care, safeguarding.
+      </li>
+      <li>
+        <strong>Séquences ETLV recommandées — 1ère</strong><br/>
+        ✅ "A day in the life of a social worker" (listening + speaking)<br/>
+        ✅ Comparaison des systèmes de santé FR / UK / USA (reading + mediation)<br/>
+        ✅ Vaccination et santé publique : la rougeole, la polio (data commentary)<br/>
+        ✅ Obesity and lifestyle in the UK (debate, argumentation)<br/>
+        ✅ Job dating : métiers du social en pays anglophones (oral interaction)
+      </li>
+      <li>
+        <strong>Compétences langagières visées</strong><br/>
+        📢 Oral en continu (présenter un système de santé) · Interaction orale (jeu de rôle soignant/patient) · Compréhension orale (podcasts médicaux) · Médiation FR ↔ EN (résumer un article de santé publique).
+      </li>
+    </ul>
+  </div>
+
+  <!-- ── TERMINALE ── -->
+  <div class="panel" id="pT">
+    <h3>Modules &amp; Thèmes — Terminale ST2S</h3>
+    <ul class="proglist">
+      <li class="t">
+        <strong>Module 4 — Politiques de Santé Publique</strong><br/>
+        <em>Public Health Policies</em><br/>
+        Analyse des politiques de santé : plans nationaux (Plan Cancer, Plan Diabète), OMS, ODD. Comparaison internationale (UK, USA, pays nordiques). Évaluation des politiques de prévention.<br/>
+        🇬🇧 Key vocabulary: policy, implementation, public health plan, SDGs, WHO strategy, screening, campaign, target population, outcome.
+      </li>
+      <li class="t">
+        <strong>Module 4 (suite) — Politiques d'Action Sociale</strong><br/>
+        <em>Social Action Policies</em><br/>
+        Les politiques de lutte contre l'exclusion (pauvreté, SDF, handicap). Droits des patients. Bioéthique. Fin de vie (soins palliatifs, loi Claeys-Leonetti).<br/>
+        🇬🇧 Key vocabulary: palliative care, euthanasia, patient rights, informed consent, exclusion, poverty trap, reintegration, disability rights.
+      </li>
+      <li class="t">
+        <strong>Thèmes transversaux — Terminale</strong><br/>
+        <em>Cross-cutting Issues</em><br/>
+        Inégalités de santé et déterminants sociaux. Migration et accès aux soins. Santé mentale et stigmatisation. Vieillissement de la population. Numérique en santé (télémédecine, IA médicale).<br/>
+        🇬🇧 Key vocabulary: ageing population, telemedicine, AI in healthcare, stigma, mental health crisis, asylum seeker, medico-social coordination.
+      </li>
+      <li class="t">
+        <strong>Séquences ETLV recommandées — Terminale</strong><br/>
+        ✅ "Migration and health in Europe" (document analysis + synthesis)<br/>
+        ✅ Bioethics: end-of-life debates in the UK vs France (essay + oral)<br/>
+        ✅ Mental health awareness campaigns (media literacy + production)<br/>
+        ✅ NHS vs French Sécurité Sociale — comparative study<br/>
+        ✅ Homelessness in the US (documentary, statistics, advocacy letter)
+      </li>
+      <li class="t">
+        <strong>Compétences langagières visées</strong><br/>
+        📝 Synthèse de documents (3 docs en anglais) · Essai argumentatif sur sujet ST2S · Prise de parole en continu 5 min · Interaction complexe (débat bioéthique) · Médiation avancée (résumer rapport OMS en français).
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ 5. MNÉMOTECHNIQUES ══════════ -->
+<section id="mnemo" class="reveal">
+  <h2>🧠 Moyens Mnémotechniques ST2S</h2>
+  <p style="font-size:.9rem;color:var(--texte-d);margin-bottom:20px;">Astuces spécialement conçues pour les notions du programme santé-social !</p>
+
+  <div class="mgrid">
+
+    <div class="mc">
+      <div class="ico">🌡️</div>
+      <div class="mt">WHO Definition of Health</div>
+      <div class="mx">Retiens <strong>"PMS"</strong> (pas qu'une maladie !) :<br/>
+        <strong>P</strong>hysical · <strong>M</strong>ental · <strong>S</strong>ocial<br/>
+        La santé selon l'OMS = les 3 dimensions, pas juste l'absence de maladie. "I feel good PMS !"
+      </div>
+    </div>
+
+    <div class="mc">
+      <div class="ico">💉</div>
+      <div class="mt">3 niveaux de Prévention</div>
+      <div class="mx">
+        <strong>"ABC of Prevention"</strong> :<br/>
+        <strong>A</strong>vant la maladie = Primaire (vaccination, info)<br/>
+        <strong>B</strong>etween / Début = Secondaire (dépistage)<br/>
+        <strong>C</strong>omplication = Tertiaire (réadaptation)<br/>
+        In English : Primary → Secondary → Tertiary.
+      </div>
+    </div>
+
+    <div class="mc">
+      <div class="ico">🏛️</div>
+      <div class="mt">Bismarck vs Beveridge</div>
+      <div class="mx">
+        <strong>Bismarck = B comme "Boulot"</strong> → cotisations salariales (travail)<br/>
+        <strong>Beveridge = B comme "Budget État"</strong> → impôts, universel<br/>
+        Retiens : le K de BismarCK = KOtisations. Le V de BeVeridge = Vaste (tout le monde).
+      </div>
+    </div>
+
+    <div class="mc">
+      <div class="ico">🌍</div>
+      <div class="mt">Social Determinants of Health</div>
+      <div class="mx">
+        Acronyme <strong>"SHEEP"</strong> :<br/>
+        <strong>S</strong>ocial support · <strong>H</strong>ousing · <strong>E</strong>ducation · <strong>E</strong>mployment · <strong>P</strong>overty<br/>
+        Les moutons (sheep) ont besoin de tout ça pour survivre — comme les humains !
+      </div>
+    </div>
+
+    <div class="mc">
+      <div class="ico">🤝</div>
+      <div class="mt">Social Worker (Travailleur social)</div>
+      <div class="mx">
+        Retiens <strong>"CARE"</strong> :<br/>
+        <strong>C</strong>oordinate · <strong>A</strong>dvocate · <strong>R</strong>efer · <strong>E</strong>mpower<br/>
+        Les 4 missions du travailleur social anglophone. "They CARE."
+      </div>
+    </div>
+
+    <div class="mc">
+      <div class="ico">🫀</div>
+      <div class="mt">Herd Immunity</div>
+      <div class="mx">
+        Imagine un <strong>troupeau de bisons 🐃</strong> : les bisons vaccinés forment un mur autour des bisons fragiles.<br/>
+        Plus le troupeau est grand (taux de couverture élevé), plus les malades sont protégés. Seuil : <strong>~95% pour la rougeole</strong>.
+      </div>
+    </div>
+
+    <div class="mc">
+      <div class="ico">📋</div>
+      <div class="mt">Informed Consent</div>
+      <div class="mx">
+        <strong>"BRAN"</strong> (utilisé par les sages-femmes anglophones) :<br/>
+        <strong>B</strong>enefits · <strong>R</strong>isks · <strong>A</strong>lternatives · <strong>N</strong>othing (what if I do nothing?)<br/>
+        Le patient doit connaître BRAN avant de signer.
+      </div>
+    </div>
+
+    <div class="mc">
+      <div class="ico">🏠</div>
+      <div class="mt">Homelessness / SDF</div>
+      <div class="mx">
+        <strong>Sans Domicile Fixe = "SDF"</strong> en français = <strong>"NFA"</strong> en anglais (No Fixed Abode).<br/>
+        Pour le vocabulaire associé : <strong>"SHIP"</strong> = <strong>S</strong>helter · <strong>H</strong>unger · <strong>I</strong>solation · <strong>P</strong>overty.
+      </div>
+    </div>
+
+    <div class="mc">
+      <div class="ico">🧬</div>
+      <div class="mt">Epidemiology</div>
+      <div class="mx">
+        <strong>Epi = sur / démos = peuple / logos = science</strong><br/>
+        Étymologie grecque : la science de ce qui tombe <em>sur</em> le peuple.<br/>
+        Retiens les 3 questions : <strong>WHO</strong> is sick? <strong>WHERE</strong>? <strong>WHY</strong>?
+      </div>
+    </div>
+
+    <div class="mc">
+      <div class="ico">💊</div>
+      <div class="mt">Palliative vs Curative Care</div>
+      <div class="mx">
+        <strong>Curative = CURE</strong> (guérir) → traiter la maladie.<br/>
+        <strong>Palliative = PALLIATE</strong> (atténuer) → soulager les symptômes.<br/>
+        Pallium en latin = manteau. On "couvre" la douleur sans guérir.
+      </div>
+    </div>
+
+    <div class="mc">
+      <div class="ico">🔬</div>
+      <div class="mt">Morbidity vs Mortality</div>
+      <div class="mx">
+        <strong>MorbIDity = maladIE</strong> (presence of disease in population)<br/>
+        <strong>MortALity = ALlons-y… au cimetière</strong> (death rate)<br/>
+        Les deux commencent par <strong>Mo</strong> — retiens l'ordre logique : on est d'abord malade, puis on peut mourir.
+      </div>
+    </div>
+
+    <div class="mc">
+      <div class="ico">🧠</div>
+      <div class="mt">Mental Health Stigma</div>
+      <div class="mx">
+        <strong>STIGMA</strong> comme acronyme :<br/>
+        <strong>S</strong>hame · <strong>T</strong>aboo · <strong>I</strong>solation · <strong>G</strong>uilt · <strong>M</strong>isunderstanding · <strong>A</strong>voidance<br/>
+        6 barrières à franchir pour parler de santé mentale librement.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ 6. PRATIQUE ETLV ══════════ -->
+<section id="pratique" class="reveal">
+  <h2>✍️ Pratique ETLV — Outils de Langue</h2>
+
+  <h3>Structures d'argumentation santé-social</h3>
+
+  <div class="phrase">
+    <div class="ph-lbl">🟣 Introduire une donnée / statistique</div>
+    <p>According to the WHO… / Statistics show that… / A recent survey conducted in… reveals that… / Data from the NHS indicates that…</p>
+  </div>
+  <div class="phrase">
+    <div class="ph-lbl">🔴 Exprimer une inégalité / un problème social</div>
+    <p>People living in deprived areas are more likely to… / There is a significant gap between… / Access to healthcare remains unequal because… / Vulnerable groups, such as…, face additional barriers…</p>
+  </div>
+  <div class="phrase">
+    <div class="ph-lbl">🟣 Comparer deux systèmes de santé</div>
+    <p>Unlike the French model, the NHS… / Both systems aim to… however… / While France relies on social insurance, the UK funds healthcare through taxation… / A key difference lies in…</p>
+  </div>
+  <div class="phrase">
+    <div class="ph-lbl">🔴 Recommander / préconiser</div>
+    <p>In order to tackle this issue, it would be advisable to… / Governments should prioritise… / A more effective approach would consist in… / It is essential that healthcare professionals…</p>
+  </div>
+
+  <h3>Médiation FR ↔ EN — Phrases STSS</h3>
+  <table class="tbl">
+    <thead><tr><th>Français (source)</th><th>English (cible)</th><th>Español (bonus)</th></tr></thead>
+    <tbody>
+      <tr><td>La sécurité sociale rembourse les soins.</td><td>Social security reimburses healthcare costs.</td><td>La seguridad social reembolsa los gastos sanitarios.</td></tr>
+      <tr><td>Les inégalités de santé sont liées aux revenus.</td><td>Health inequalities are closely linked to income levels.</td><td>Las desigualdades en salud están estrechamente vinculadas al nivel de ingresos.</td></tr>
+      <tr><td>Le travailleur social accompagne les personnes vulnérables.</td><td>The social worker supports vulnerable individuals.</td><td>El trabajador social acompaña a las personas vulnerables.</td></tr>
+      <tr><td>Le dépistage précoce sauve des vies.</td><td>Early screening saves lives.</td><td>El cribado precoz salva vidas.</td></tr>
+      <tr><td>Les sans-abri ont du mal à accéder aux soins.</td><td>Homeless people struggle to access healthcare.</td><td>Las personas sin hogar tienen dificultades para acceder a la atención sanitaria.</td></tr>
+      <tr><td>La prévention est moins coûteuse que le traitement.</td><td>Prevention is less costly than treatment.</td><td>La prevención es menos costosa que el tratamiento.</td></tr>
+      <tr><td>Les migrants sont souvent exclus du système de santé.</td><td>Migrants are often excluded from the healthcare system.</td><td>Los migrantes suelen quedar excluidos del sistema sanitario.</td></tr>
+      <tr><td>La télémédecine facilite l'accès aux soins en zones rurales.</td><td>Telemedicine improves access to healthcare in rural areas.</td><td>La telemedicina mejora el acceso a la atención sanitaria en zonas rurales.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Méthode PEEL — Paragraphe ST2S</h3>
+  <div class="peel">
+    <div class="peel-box" style="background:rgba(176,106,170,.12)">
+      <div class="peel-letter">P</div>
+      <div class="peel-title">Point</div>
+      <div class="peel-desc">Énonce ta thèse / ton argument principal sur le sujet santé-social.</div>
+    </div>
+    <div class="peel-box" style="background:rgba(124,58,136,.12)">
+      <div class="peel-letter">E</div>
+      <div class="peel-title">Evidence</div>
+      <div class="peel-desc">Cite statistiques, rapport OMS, exemple d'un pays anglophone.</div>
+    </div>
+    <div class="peel-box" style="background:rgba(139,34,82,.11)">
+      <div class="peel-letter">E</div>
+      <div class="peel-title">Explain</div>
+      <div class="peel-desc">Analyse le lien entre la preuve et ton argument. Pourquoi cela prouve-t-il ton point ?</div>
+    </div>
+    <div class="peel-box" style="background:rgba(90,15,48,.1)">
+      <div class="peel-letter">L</div>
+      <div class="peel-title">Link</div>
+      <div class="peel-desc">Relie à la question / au sujet principal. Transition vers le prochain argument.</div>
+    </div>
+  </div>
+
+  <h3>Exemple de Paragraphe PEEL — Sujet ST2S</h3>
+  <div class="phrase">
+    <div class="ph-lbl">📝 Sujet : "To what extent does poverty affect access to healthcare?" (Terminale ST2S)</div>
+    <p>
+      <strong>[Point]</strong> Poverty remains one of the most significant barriers to adequate healthcare access in developed and developing nations alike.
+      <strong>[Evidence]</strong> According to the WHO (2023), approximately 2 billion people worldwide cannot afford essential health services without suffering financial hardship.
+      <strong>[Explain]</strong> This is particularly visible in countries without universal coverage, such as the United States, where low-income individuals often delay or forego treatment due to cost, leading to worse health outcomes and higher long-term expenditure.
+      <strong>[Link]</strong> This demonstrates that achieving Universal Health Coverage (UHC) is not merely a medical issue but a matter of social justice and political will.
+    </p>
+  </div>
+
+  <h3>Connecteurs Logiques — Linking Words (ST2S)</h3>
+  <table class="tbl">
+    <thead><tr><th>Fonction</th><th>English</th><th>Español</th></tr></thead>
+    <tbody>
+      <tr><td>Addition</td><td>Furthermore, Moreover, In addition, Besides</td><td>Además, Por otra parte, Asimismo</td></tr>
+      <tr><td>Contraste</td><td>However, Nevertheless, Yet, On the other hand</td><td>Sin embargo, No obstante, Por otro lado</td></tr>
+      <tr><td>Cause</td><td>Because, Since, As, Due to, Owing to</td><td>Porque, Dado que, Debido a</td></tr>
+      <tr><td>Conséquence</td><td>Therefore, Thus, Hence, As a result, Consequently</td><td>Por lo tanto, En consecuencia, Por ello</td></tr>
+      <tr><td>Illustration</td><td>For instance, For example, Such as, Namely, As shown by</td><td>Por ejemplo, Como el caso de, Tal como muestra</td></tr>
+      <tr><td>Concession</td><td>Although, Even though, Despite, In spite of, While</td><td>Aunque, A pesar de, Si bien, Pese a</td></tr>
+      <tr><td>Recommandation</td><td>It is crucial to, Governments should, It is advisable to</td><td>Es crucial, Los gobiernos deben, Se recomienda</td></tr>
+      <tr><td>Conclusion</td><td>In conclusion, To sum up, Ultimately, All in all</td><td>En conclusión, En resumen, En definitiva</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Lexique Oral — Prendre la Parole en ETLV</h3>
+  <div class="phrase">
+    <div class="ph-lbl">🗣️ Démarrer une présentation orale</div>
+    <p>Today, I'd like to address the issue of… / I'm going to focus on… / The document/graph/article we are studying deals with… / Let me draw your attention to…</p>
+  </div>
+  <div class="phrase">
+    <div class="ph-lbl">🗣️ Reformuler / clarifier (médiation orale)</div>
+    <p>In other words… / What this means is… / To put it differently… / The French text explains that… which can be translated as… / This is equivalent to the concept of…</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  🌸 Guide ETLV Anglais — Bac ST2S · Programme STSS · Notions EN / ES · 1ère &amp; Terminale différenciés 🌸
+  <span>Conforme au programme officiel ST2S (Santé &amp; Social) · Académies de référence : Caen, Amiens, Créteil, Nancy-Metz</span>
+</footer>
+
+<script>
+  // ── Onglets programme ──
+  function go(tab){
+    document.getElementById('p1').classList.remove('show');
+    document.getElementById('pT').classList.remove('show');
+    document.getElementById('p'+tab).classList.add('show');
+    document.getElementById('btn1').className = 'tab ' + (tab==='1' ? 'on1' : 'off');
+    document.getElementById('btnT').className = 'tab ' + (tab==='T' ? 'onT' : 'off');
+  }
+
+  // ── Reveal au scroll ──
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}});
+  },{threshold:.07});
+  document.querySelectorAll('.reveal').forEach(s=>io.observe(s));
+
+  // ── Smooth scroll ──
+  document.querySelectorAll('nav a').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+    });
+  });
+</script>
+</body>
+</html>
